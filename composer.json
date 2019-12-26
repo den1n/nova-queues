@@ -1,0 +1,27 @@
+{
+    "name": "den1n/nova-queues",
+    "description": "Queues resource for Laravel Nova.",
+    "homepage": "https://github.com/den1n/nova-queues",
+    "license": "MIT",
+    "keywords": ["den1n", "laravel", "nova", "queues"],
+    "authors": [{
+        "name": "Dmitry Kadochnikov",
+        "email": "iqmass@gmail.com"
+    }],
+    "require": {
+        "php": ">=7.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Den1n\\NovaQueues\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Den1n\\NovaQueues\\AuthServiceProvider",
+                "Den1n\\NovaQueues\\ServiceProvider"
+            ]
+        }
+    }
+}
