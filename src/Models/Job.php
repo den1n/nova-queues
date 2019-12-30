@@ -2,30 +2,26 @@
 
 namespace Den1n\NovaQueues\Models;
 
+use Carbon\Carbon;
+use DateTimeInterface;
+
 class Job extends \Illuminate\Database\Eloquent\Model
 {
     protected $guarded = [
         'id',
     ];
 
-    protected $attributes = [
-        'created_at' => 'now',
-    ];
-
     protected $appends = [
         'displayName',
         'maxTries',
         'delay',
+        'reserved_at_date',
+        'available_at_date',
+        'created_at_date',
     ];
 
     protected $casts = [
         'payload' => 'array',
-    ];
-
-    protected $dates = [
-        'reserved_at',
-        'available_at',
-        'created_at',
     ];
 
     public $timestamps = false;
@@ -43,7 +39,7 @@ class Job extends \Illuminate\Database\Eloquent\Model
      */
     public function getDisplayNameAttribute(): string
     {
-        return $this->payload['displayName'];
+        return $this->payload['displayName'] ?? '';
     }
 
     /**
@@ -51,7 +47,7 @@ class Job extends \Illuminate\Database\Eloquent\Model
      */
     public function getMaxTriesAttribute(): int
     {
-        return $this->payload['maxTries'];
+        return $this->payload['maxTries'] ?? 0;
     }
 
     /**
@@ -59,6 +55,30 @@ class Job extends \Illuminate\Database\Eloquent\Model
      */
     public function getDelayAttribute(): int
     {
-        return $this->payload['delay'];
+        return $this->payload['delay'] ?? 0;
+    }
+
+    /**
+     * Get value of reserved_at_date attribute.
+     */
+    public function getReservedAtDateAttribute(): ?DateTimeInterface
+    {
+        return $this->reserved_at ? Carbon::parse($this->reserved_at) : null;
+    }
+
+    /**
+     * Get value of available_at_date attribute.
+     */
+    public function getAvailableAtDateAttribute(): DateTimeInterface
+    {
+        return Carbon::parse($this->available_at);
+    }
+
+    /**
+     * Get value of created_at_date attribute.
+     */
+    public function getCreatedAtDateAttribute(): DateTimeInterface
+    {
+        return Carbon::parse($this->created_at);
     }
 }

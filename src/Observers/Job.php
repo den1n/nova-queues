@@ -11,6 +11,8 @@ class Job
      */
     public function saving(Model $job): void
     {
-        $job->created_at = $job->created_at ?: now();
+        $timestamp = now()->getTimeStamp();
+        $job->available_at = $job->available_at ?: $timestamp;
+        $job->created_at = $job->created_at ?: $timestamp;
     }
 }

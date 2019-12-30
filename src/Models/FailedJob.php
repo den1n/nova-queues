@@ -8,10 +8,6 @@ class FailedJob extends \Illuminate\Database\Eloquent\Model
         'id',
     ];
 
-    protected $attributes = [
-        'failed_at' => 'now',
-    ];
-
     protected $appends = [
         'displayName',
         'maxTries',

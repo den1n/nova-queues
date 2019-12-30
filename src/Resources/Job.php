@@ -86,15 +86,32 @@ class Job extends Resource
                 ->rules('required')
                 ->hideFromIndex(),
 
-            DateTime::make(__('Reserved At'), 'reserved_at')
+            DateTime::make(__('Reserved At'), 'reserved_at_date')
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
                 ->sortable(),
 
-            DateTime::make(__('Available At'), 'available_at')
+            Number::make(__('Reserved At'), 'reserved_at')
+                ->hideFromDetail()
+                ->hideFromIndex(),
+
+            DateTime::make(__('Available At'), 'available_at_date')
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
                 ->sortable(),
 
-            DateTime::make(__('Created At'), 'created_at')
-                ->rules('required')
+            Number::make(__('Available At'), 'available_at')
+                ->hideFromDetail()
+                ->hideFromIndex(),
+
+            DateTime::make(__('Created At'), 'created_at_date')
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
                 ->sortable(),
+
+            Number::make(__('Created At'), 'created_at')
+                ->hideFromDetail()
+                ->hideFromIndex(),
         ];
     }
 

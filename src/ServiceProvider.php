@@ -12,7 +12,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->publishResources();
         $this->loadTranslations();
 
-        // config('nova-queues.models.job')::observe(Observers\Job::class);
+        config('nova-queues.models.job')::observe(Observers\Job::class);
+        config('nova-queues.models.failed_job')::observe(Observers\FailedJob::class);
     }
 
     /**
