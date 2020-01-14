@@ -25,6 +25,7 @@ class AuthServiceProvider extends \Illuminate\Foundation\Support\Providers\AuthS
     {
         $this->policies = [
             config('nova-queues.models.job') => Policies\Job::class,
+            config('nova-queues.models.failed_job') => Policies\FailedJob::class,
         ];
 
         $this->registerPolicies();
