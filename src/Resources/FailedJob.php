@@ -82,7 +82,8 @@ class FailedJob extends Resource
             })
                 ->hideWhenCreating()
                 ->hideWhenUpdating()
-                ->hideFromDetail(),
+                ->hideFromDetail()
+                ->asHtml(),
 
             DateTime::make(__('Failed At'), 'failed_at')
                 ->rules('required')
