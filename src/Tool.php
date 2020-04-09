@@ -13,6 +13,7 @@ class Tool extends \Laravel\Nova\Tool
     {
         $models = config('nova-queues.models');
         $resources = config('nova-queues.resources');
+
         foreach ($resources as $name => $class) {
             $class::$model = $models[$name];
             Nova::resources([$class]);

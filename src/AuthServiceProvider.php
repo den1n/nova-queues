@@ -32,10 +32,8 @@ class AuthServiceProvider extends \Illuminate\Foundation\Support\Providers\AuthS
 
         foreach ($this->permissions as $permission) {
             Gate::define($permission, function ($user) use ($permission) {
-                if (class_uses($user)['Den1n\\Permissions\\HasRoles'] ?? false) {
-                    return $user->roles->contains(function ($role) use ($permission) {
-                        return $role->super or in_array($permission, $role->permissions);
-                    });
+                if (method_exists($user, 'hasPermission')) {
+                    return $user->hasPermission($permission);
                 } else
                     return true;
             });
