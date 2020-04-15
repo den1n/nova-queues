@@ -10,10 +10,16 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function boot(): void
     {
         $this->publishResources();
+        $this->loadMigrations();
         $this->loadTranslations();
+    }
 
-        config('nova-queues.models.job')::observe(Observers\Job::class);
-        config('nova-queues.models.failed_job')::observe(Observers\FailedJob::class);
+    /**
+     * Load package migrations files.
+     */
+    protected function loadMigrations(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
     }
 
     /**

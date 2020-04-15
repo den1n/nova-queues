@@ -27,6 +27,20 @@ class Job extends \Illuminate\Database\Eloquent\Model
     public $timestamps = false;
 
     /**
+     * The "booting" method of the model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function (self $job) {
+            $timestamp = now()->getTimeStamp();
+            $job->available_at = $job->available_at ?: $timestamp;
+            $job->created_at = $job->created_at ?: $timestamp;
+        });
+    }
+
+    /**
      * Get the table associated with the model.
      */
     public function getTable(): string

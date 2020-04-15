@@ -25,6 +25,18 @@ class FailedJob extends \Illuminate\Database\Eloquent\Model
     public $timestamps = false;
 
     /**
+     * The "booting" method of the model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function (self $job) {
+            $job->failed_at = $job->failed_at ?: now();
+        });
+    }
+
+    /**
      * Get the table associated with the model.
      */
     public function getTable(): string
