@@ -77,7 +77,11 @@ class Job extends \Illuminate\Database\Eloquent\Model
      */
     public function getReservedAtDateAttribute(): ?DateTimeInterface
     {
-        return $this->reserved_at ? Carbon::parse($this->reserved_at) : null;
+        if ($this->reserved_at) {
+            return Carbon::parse($this->reserved_at)
+                ->setTimezone(config('app.timezone'));
+        } else
+            return null;
     }
 
     /**
@@ -85,7 +89,8 @@ class Job extends \Illuminate\Database\Eloquent\Model
      */
     public function getAvailableAtDateAttribute(): DateTimeInterface
     {
-        return Carbon::parse($this->available_at);
+        return Carbon::parse($this->available_at)
+            ->setTimezone(config('app.timezone'));
     }
 
     /**
@@ -93,6 +98,7 @@ class Job extends \Illuminate\Database\Eloquent\Model
      */
     public function getCreatedAtDateAttribute(): DateTimeInterface
     {
-        return Carbon::parse($this->created_at);
+        return Carbon::parse($this->created_at)
+            ->setTimezone(config('app.timezone'));
     }
 }
