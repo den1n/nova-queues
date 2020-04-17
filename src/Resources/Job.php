@@ -2,6 +2,7 @@
 
 namespace Den1n\NovaQueues\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\DateTime;
@@ -86,7 +87,13 @@ class Job extends Resource
                 ->rules('required')
                 ->hideFromIndex(),
 
-            DateTime::make(__('Reserved At'), 'reserved_at_date')
+            DateTime::make(__('Reserved At'), 'reserved_at', function () {
+                if ($this->reserved_at) {
+                    return Carbon::parse($this->reserved_at)
+                        ->setTimezone(config('app.timezone'));
+                } else
+                    return null;
+            })
                 ->hideWhenCreating()
                 ->hideWhenUpdating()
                 ->sortable(),
@@ -95,7 +102,10 @@ class Job extends Resource
                 ->hideFromDetail()
                 ->hideFromIndex(),
 
-            DateTime::make(__('Available At'), 'available_at_date')
+            DateTime::make(__('Available At'), 'available_at', function () {
+                return Carbon::parse($this->available_at)
+                    ->setTimezone(config('app.timezone'));
+            })
                 ->hideWhenCreating()
                 ->hideWhenUpdating()
                 ->sortable(),
@@ -104,7 +114,10 @@ class Job extends Resource
                 ->hideFromDetail()
                 ->hideFromIndex(),
 
-            DateTime::make(__('Created At'), 'created_at_date')
+            DateTime::make(__('Created At'), 'created_at', function () {
+                return Carbon::parse($this->created_at)
+                    ->setTimezone(config('app.timezone'));
+            })
                 ->hideWhenCreating()
                 ->hideWhenUpdating()
                 ->sortable(),

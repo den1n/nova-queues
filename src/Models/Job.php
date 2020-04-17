@@ -15,9 +15,6 @@ class Job extends \Illuminate\Database\Eloquent\Model
         'displayName',
         'maxTries',
         'delay',
-        'reserved_at_date',
-        'available_at_date',
-        'created_at_date',
     ];
 
     protected $casts = [
@@ -70,35 +67,5 @@ class Job extends \Illuminate\Database\Eloquent\Model
     public function getDelayAttribute(): int
     {
         return $this->payload['delay'] ?? 0;
-    }
-
-    /**
-     * Get value of reserved_at_date attribute.
-     */
-    public function getReservedAtDateAttribute(): ?DateTimeInterface
-    {
-        if ($this->reserved_at) {
-            return Carbon::parse($this->reserved_at)
-                ->setTimezone(config('app.timezone'));
-        } else
-            return null;
-    }
-
-    /**
-     * Get value of available_at_date attribute.
-     */
-    public function getAvailableAtDateAttribute(): DateTimeInterface
-    {
-        return Carbon::parse($this->available_at)
-            ->setTimezone(config('app.timezone'));
-    }
-
-    /**
-     * Get value of created_at_date attribute.
-     */
-    public function getCreatedAtDateAttribute(): DateTimeInterface
-    {
-        return Carbon::parse($this->created_at)
-            ->setTimezone(config('app.timezone'));
     }
 }
