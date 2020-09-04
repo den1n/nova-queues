@@ -9,44 +9,38 @@ class Job
 {
     use HandlesAuthorization;
 
-    public function before($user)
-    {
-        if ($user->can('queuesManager'))
-            return true;
-    }
-
     public function viewAny($user): bool
     {
-        return $user->can('queuesViewJobs');
+        return true;
     }
 
     public function view($user, Model $job): bool
     {
-        return $user->can('queuesViewJobs');
+        return true;
     }
 
     public function create($user): bool
     {
-        return $user->can('queuesCreateJobs');
+        return false;
     }
 
     public function update($user, Model $job): bool
     {
-        return $user->can('queuesUpdateJobs');
+        return false;
     }
 
     public function delete($user, Model $job): bool
     {
-        return $user->can('queuesDeleteJobs');
+        return false;
     }
 
     public function restore($user, Model $job): bool
     {
-        return $user->can('queuesDeleteJobs');
+        return false;
     }
 
     public function forceDelete($user, Model $job): bool
     {
-        return $user->can('queuesDeleteJobs');
+        return false;
     }
 }

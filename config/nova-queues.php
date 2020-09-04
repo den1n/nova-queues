@@ -3,7 +3,7 @@
 return [
 
     /**
-     * Names of models used by application.
+     * Used models.
      */
 
     'models' => [
@@ -12,12 +12,21 @@ return [
     ],
 
     /**
-     * Names of resources used by Nova.
+     * Resources used by Nova.
      */
 
     'resources' => [
         'job' => \Den1n\NovaQueues\Resources\Job::class,
         'failed_job' => \Den1n\NovaQueues\Resources\FailedJob::class,
+    ],
+
+    /**
+     * Policies used by Nova.
+     */
+
+    'policies' => [
+        'job' => \Den1n\NovaQueues\Policies\Job::class,
+        'failed_job' => \Den1n\NovaQueues\Policies\FailedJob::class,
     ],
 
     /**

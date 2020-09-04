@@ -9,44 +9,38 @@ class FailedJob
 {
     use HandlesAuthorization;
 
-    public function before($user)
-    {
-        if ($user->can('queuesManager'))
-            return true;
-    }
-
     public function viewAny($user): bool
     {
-        return $user->can('queuesViewFailedJobs');
+        return true;
     }
 
     public function view($user, Model $job): bool
     {
-        return $user->can('queuesViewFailedJobs');
+        return true;
     }
 
     public function create($user): bool
     {
-        return $user->can('queuesCreateFailedJobs');
+        return false;
     }
 
     public function update($user, Model $job): bool
     {
-        return $user->can('queuesUpdateFailedJobs');
+        return false;
     }
 
     public function delete($user, Model $job): bool
     {
-        return $user->can('queuesDeleteFailedJobs');
+        return false;
     }
 
     public function restore($user, Model $job): bool
     {
-        return $user->can('queuesDeleteFailedJobs');
+        return false;
     }
 
     public function forceDelete($user, Model $job): bool
     {
-        return $user->can('queuesDeleteFailedJobs');
+        return false;
     }
 }

@@ -2,9 +2,6 @@
 
 namespace Den1n\NovaQueues\Models;
 
-use Carbon\Carbon;
-use DateTimeInterface;
-
 class Job extends \Illuminate\Database\Eloquent\Model
 {
     protected $guarded = [
