@@ -21,15 +21,6 @@ return [
     ],
 
     /**
-     * Policies used by Nova.
-     */
-
-    'policies' => [
-        'job' => \Den1n\NovaQueues\Policies\Job::class,
-        'failed_job' => \Den1n\NovaQueues\Policies\FailedJob::class,
-    ],
-
-    /**
      * Names of database tables used by models.
      */
 
@@ -37,5 +28,11 @@ return [
         'jobs' => 'jobs',
         'failed_jobs' => 'failed_jobs',
     ],
+
+    /**
+     * The group name for the Nova navigation bar in which the package resources will be displayed.
+     */
+
+    'navigation-group' => 'Queues',
 
 ];

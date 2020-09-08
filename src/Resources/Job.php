@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Job extends Resource
 {
@@ -22,13 +23,6 @@ class Job extends Resource
      */
     public static $search = [
         'queue', 'payload',
-    ];
-
-    /**
-     * Display order of data in index table.
-     */
-    public static $displayInOrder = [
-        ['created_at', 'desc'],
     ];
 
     /**
@@ -49,6 +43,25 @@ class Job extends Resource
             __('Attempts') . ': ' . $this->attempts . '/' . $this->maxTries,
             __('Delay') . ': ' . $this->delay,
         ]);
+    }
+
+    /**
+     * Get the logical group associated with the resource.
+     */
+    public static function group()
+    {
+        return __(config('nova-queues.navigation-group', static::$group));
+    }
+
+    /**
+     * Build an "index" query for the given resource.
+     */
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->reorder(
+            $request->get('orderBy') ?: 'created_at',
+            $request->get('orderByDirection') ?: 'desc'
+        );
     }
 
     /**

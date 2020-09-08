@@ -11,23 +11,15 @@ class Tool extends \Laravel\Nova\Tool
      */
     public function boot(): void
     {
-        $models = config('nova-queues.models');
-        $resources = config('nova-queues.resources');
+        $jobs = config('nova-queues.resources.job');
+        $failedJobs = config('nova-queues.resources.failed_job');
 
-        foreach ($resources as $name => $class) {
-            $class::$model = $models[$name];
-            Nova::resources([$class]);
-        }
-    }
+        $jobs::$model = config('nova-queues.models.job');
+        $failedJobs::$model = config('nova-queues.models.failed_job');
 
-	/**
-	 * Build the view that renders the navigation links for the tool.
-	 */
-	public function renderNavigation()
-	{
-		return view('nova-queues::navigation', [
-            'jobsUriKey' => config('nova-queues.resources.job')::uriKey(),
-            'failedJobsUriKey' => config('nova-queues.resources.failed_job')::uriKey(),
+        Nova::resources([
+            $jobs,
+            $failedJobs,
         ]);
-	}
+    }
 }

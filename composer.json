@@ -19,7 +19,6 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Den1n\\NovaQueues\\AuthServiceProvider",
                 "Den1n\\NovaQueues\\ServiceProvider"
             ]
         }

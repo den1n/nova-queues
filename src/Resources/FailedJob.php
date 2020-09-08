@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class FailedJob extends Resource
 {
@@ -21,13 +22,6 @@ class FailedJob extends Resource
      */
     public static $search = [
         'queue', 'payload',
-    ];
-
-    /**
-     * Display order of data in index table.
-     */
-    public static $displayInOrder = [
-        ['failed_at', 'desc'],
     ];
 
     /**
@@ -47,6 +41,25 @@ class FailedJob extends Resource
             __('Connection') . ': ' . $this->connection,
             __('Queue') . ': ' . $this->queue,
         ]);
+    }
+
+    /**
+     * Get the logical group associated with the resource.
+     */
+    public static function group()
+    {
+        return __(config('nova-queues.navigation-group', static::$group));
+    }
+
+    /**
+     * Build an "index" query for the given resource.
+     */
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->reorder(
+            $request->get('orderBy') ?: 'failed_at',
+            $request->get('orderByDirection') ?: 'desc'
+        );
     }
 
     /**
@@ -140,8 +153,8 @@ class FailedJob extends Resource
     public function actions(Request $request): array
     {
         return [
-            (new \Den1n\NovaQueues\Actions\Retry)->canSee(function ($request) {
-                return $request->user()->can(['queuesCreateJobs']);
+            (new \Den1n\NovaQueues\Actions\Retry)->canRun(function ($request, $job) {
+                return $request->user()->can('create', $job);
             }),
         ];
     }
