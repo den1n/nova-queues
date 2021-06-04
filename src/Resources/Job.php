@@ -102,7 +102,7 @@ class Job extends Resource
 
             DateTime::make(__('Reserved At'), 'reserved_at', function () {
                 if ($this->reserved_at) {
-                    return Carbon::parse($this->reserved_at)
+                    return Carbon::createFromTimestamp($this->reserved_at)
                         ->setTimezone(config('app.timezone'));
                 } else
                     return null;
@@ -116,7 +116,7 @@ class Job extends Resource
                 ->hideFromIndex(),
 
             DateTime::make(__('Available At'), 'available_at', function () {
-                return Carbon::parse($this->available_at)
+                return Carbon::createFromTimestamp($this->available_at)
                     ->setTimezone(config('app.timezone'));
             })
                 ->hideWhenCreating()
@@ -128,7 +128,7 @@ class Job extends Resource
                 ->hideFromIndex(),
 
             DateTime::make(__('Created At'), 'created_at', function () {
-                return Carbon::parse($this->created_at)
+                return Carbon::createFromTimestamp($this->created_at)
                     ->setTimezone(config('app.timezone'));
             })
                 ->hideWhenCreating()
