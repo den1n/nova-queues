@@ -41,7 +41,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     protected function loadTranslations(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nova-queues');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'nova-queues');
         $this->loadJSONTranslationsFrom(__DIR__ . '/../resources/lang');
         $this->loadJsonTranslationsFrom(resource_path('lang/vendor/nova-queues'));
