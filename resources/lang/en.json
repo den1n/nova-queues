@@ -15,15 +15,5 @@
     "Jobs": "Jobs",
     "Failed Job": "Failed Job",
     "Failed Jobs": "Failed Jobs",
-    "Retry": "Retry",
-
-    "queuesManager": "Queues: Manager",
-    "queuesViewJobs": "Queues: View Jobs",
-    "queuesCreateJobs": "Queues: Create Jobs",
-    "queuesUpdateJobs": "Queues: Update Jobs",
-    "queuesDeleteJobs": "Queues: Delete Jobs",
-    "queuesViewFailedJobs": "Queues: View Failed Jobs",
-    "queuesCreateFailedJobs": "Queues: Create Failed Jobs",
-    "queuesUpdateFailedJobs": "Queues: Update Failed Jobs",
-    "queuesDeleteFailedJobs": "Queues: Delete Failed Jobs"
+    "Retry": "Retry"
 }

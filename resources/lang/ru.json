@@ -15,15 +15,5 @@
     "Jobs": "Задачи",
     "Failed Job": "Неудачная задача",
     "Failed Jobs": "Неудачные задачи",
-    "Retry": "Повторить",
-
-    "queuesManager": "Очереди: Менеджер",
-    "queuesViewJobs": "Очереди: Просмотр задач",
-    "queuesCreateJobs": "Очереди: Создание задач",
-    "queuesUpdateJobs": "Очереди: Обновление задач",
-    "queuesDeleteJobs": "Очереди: Удаление задач",
-    "queuesViewFailedJobs": "Очереди: Просмотр неудачных задач",
-    "queuesCreateFailedJobs": "Очереди: Создание неудачных задач",
-    "queuesUpdateFailedJobs": "Очереди: Обновление неудачных задач",
-    "queuesDeleteFailedJobs": "Очереди: Удаление неудачных задач"
+    "Retry": "Повторить"
 }
