@@ -28,9 +28,8 @@ class Retry extends Action
     public function handle(ActionFields $fields, Collection $models): void
     {
         foreach ($models as $model) {
-            Artisan::call('queue:retry', [
-                'id' => $model->id,
-            ]);
+            $uuid = $model->uuid;
+            Artisan::call("queue:retry $uuid");
         }
     }
 }
