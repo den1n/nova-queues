@@ -27,9 +27,11 @@ class Retry extends Action
      */
     public function handle(ActionFields $fields, Collection $models): void
     {
+        $usesUuid = config('queue.failed.driver') === 'database-uuids';
+
         foreach ($models as $model) {
             Artisan::call('queue:retry', [
-                'id' => [$model->id],
+                'id' => [$usesUuid ? $model->uuid : $model->id],
             ]);
         }
     }
