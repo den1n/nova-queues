@@ -1,6 +1,6 @@
 # nova-queues
 
-Queues resource for Laravel Nova.
+Queue resource for Laravel Nova.
 
 ## Installation
 
