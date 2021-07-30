@@ -29,7 +29,7 @@ class Retry extends Action
     {
         foreach ($models as $model) {
             Artisan::call('queue:retry', [
-                'id' => $model->id,
+                'id' => [$model->id],
             ]);
         }
     }
