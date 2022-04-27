@@ -2,6 +2,8 @@
 
 Queue resource for Laravel Nova.
 
+Supports only the `database` queue driver.
+
 ## Installation
 
 Install package with Composer.
