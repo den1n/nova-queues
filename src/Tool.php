@@ -2,10 +2,16 @@
 
 namespace Den1n\NovaQueues;
 
+use Illuminate\Http\Request;
 use Laravel\Nova\Nova;
 
 class Tool extends \Laravel\Nova\Tool
 {
+    public function menu(Request $request)
+    {
+        return [];
+    }
+
     /**
      * Perform any tasks that need to happen when the tool is booted.
      */
