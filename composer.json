@@ -9,7 +9,7 @@
         "email": "iqmass@gmail.com"
     }],
     "require": {
-        "php": "^8.0",
+        "php": "^7.2|^8.0",
         "laravel/nova": "^3.0|^4.0"
     },
     "autoload": {
