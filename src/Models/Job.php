@@ -2,6 +2,8 @@
 
 namespace Den1n\NovaQueues\Models;
 
+use Illuminate\Http\Request;
+
 class Job extends \Illuminate\Database\Eloquent\Model
 {
     protected $guarded = [
@@ -64,5 +66,16 @@ class Job extends \Illuminate\Database\Eloquent\Model
     public function getDelayAttribute(): int
     {
         return $this->payload['delay'] ?? 0;
+    }
+
+    /**
+     * Allow the creation of new jobs within Laravel Nova
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public static function authorizedToCreate(Request $request)
+    {
+        return config('nova-queues.can_create.job', false);
     }
 }

@@ -35,4 +35,9 @@ return [
 
     'navigation-group' => 'Queues',
 
+    'can_create' => [
+        'job' => false,
+        'failed_job' => false,
+    ],
+
 ];
