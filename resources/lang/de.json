@@ -1,0 +1,19 @@
+{
+	"Name": "Name",
+	"Connection": "Verbindung",
+	"Exception": "Exception",
+	"Queue": "Queue",
+	"Queues": "Queues",
+	"Attempts": "Versuche",
+	"Delay": "Verzögerung",
+	"Payload": "Payload",
+	"Reserved At": "Reserviert am",
+	"Available At": "Verfügbar am",
+	"Created At": "Erstellt am",
+	"Failed At": "Fehlgeschlagen am",
+	"Job": "Job",
+	"Jobs": "Jobs",
+	"Failed Job": "Fehlgeschlagener Job",
+	"Failed Jobs": "Fehlgeschlagene Jobs",
+	"Retry": "Wiederholen"
+}
