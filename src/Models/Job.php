@@ -67,15 +67,4 @@ class Job extends \Illuminate\Database\Eloquent\Model
     {
         return $this->payload['delay'] ?? 0;
     }
-
-    /**
-     * Allow the creation of new jobs within Laravel Nova
-     *
-     * @param Request $request
-     * @return bool
-     */
-    public static function authorizedToCreate(Request $request): bool
-    {
-        return config('nova-queues.can_create.job', false);
-    }
 }

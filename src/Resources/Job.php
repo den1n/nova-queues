@@ -190,4 +190,15 @@ class Job extends Resource
     {
         return [];
     }
+
+    /**
+     * Allow the creation of new failed jobs within Laravel Nova
+     *
+     * @param Request $request
+     * @return bool
+     */
+    public static function authorizedToCreate(Request $request): bool
+    {
+        return config('nova-queues.can_create.job', false);
+    }
 }
