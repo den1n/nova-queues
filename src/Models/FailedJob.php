@@ -67,15 +67,4 @@ class FailedJob extends \Illuminate\Database\Eloquent\Model
     {
         return $this->payload['delay'];
     }
-
-    /**
-     * Allow the creation of new failed jobs within Laravel Nova
-     *
-     * @param Request $request
-     * @return bool
-     */
-    public static function authorizedToCreate(Request $request): bool
-	{
-        return config('nova-queues.can_create.failed_job', false);
-    }
 }
