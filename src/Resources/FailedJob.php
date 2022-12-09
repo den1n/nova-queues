@@ -154,8 +154,8 @@ class FailedJob extends Resource
     {
         return [
             (new \Den1n\NovaQueues\Actions\Retry)->canRun(function ($request, $job) {
-                return $request->user()->can('create', $job);
-            }),
+                return config('nova-queues.overwrite_action_permission', false) || $request->user()->can('create', $job);
+            })->showOnTableRow(),
         ];
     }
 

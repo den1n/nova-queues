@@ -35,6 +35,16 @@ return [
 
     'navigation-group' => 'Queues',
 
+    /**
+     * Overwrites the need of an action permission to retry a failed job.
+     */
+
+    'overwrite_action_permission' => false,
+
+    /**
+     * Allows or disallows the creation of new jobs and failed jobs within Laravel Nova.
+     */
+
     'can_create' => [
         'job' => false,
         'failed_job' => false,
