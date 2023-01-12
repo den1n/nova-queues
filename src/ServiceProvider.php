@@ -32,7 +32,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         ], 'config');
 
         $this->publishes([
-            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/nova-queues'),
+            __DIR__ . '/../resources/lang' => lang_path('vendor/nova-queues'),
         ], 'lang');
     }
 
